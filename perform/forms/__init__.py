@@ -1,0 +1,4 @@
+from .cadastrarClientes_forms import CadastrarClienteForm
+from .editarClientes_forms import EditarClienteForm
+from .excluirClientes_forms import ExcluirClienteForm
+from .listarClientes_forms import ListarClienteForm

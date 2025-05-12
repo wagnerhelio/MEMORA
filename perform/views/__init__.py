@@ -1,0 +1,27 @@
+# Autenticação e Menu
+from .login_views import login_ad_view, logout_view
+from .menu_views import menu_view
+
+# Cliente
+from .cadastrar_clientes_views import cadastrar_clientes_view
+from .listar_clientes_views import listar_clientes_view
+from .editar_clientes_views import editar_clientes_view
+from .excluir_clientes_views import excluir_clientes_view
+
+# Tipo de Faturamento
+from .cadastrar_tipo_faturamento_view import cadastrar_tipo_faturamento_view
+from .listar_tipo_faturamento_view import listar_tipo_faturamento_view
+from .editar_tipo_faturamento_view import editar_tipo_faturamento_view
+from .excluir_tipo_faturamento_view import excluir_tipo_faturamento_view
+
+# Tipo de Indicador
+from .cadastrar_tipo_indicador_view import cadastrar_tipo_indicador_view
+from .listar_tipo_indicador_view import listar_tipo_indicador_view
+from .editar_tipo_indicador_view import editar_tipo_indicador_view
+from .excluir_tipo_indicador_view import excluir_tipo_indicador_view
+
+# Faturamento
+from .cadastrar_faturamento_view import cadastrar_faturamento_view
+from .listar_faturamento_view import listar_faturamento_view
+from .editar_faturamento_view import editar_faturamento_view
+from .excluir_faturamento_view import excluir_faturamento_view

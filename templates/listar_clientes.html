@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes Cadastrados</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            padding: 12px 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            color: white;
+        }
+
+        .cadastrar {
+            background-color: #4CAF50;
+        }
+
+        .menu {
+            background-color: #2196F3;
+        }
+
+        .menu:hover {
+            background-color: #1976D2;
+        }
+
+        .cadastrar:hover {
+            background-color: #388E3C;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #e0e0e0;
+        }
+
+        @media (max-width: 600px) {
+            .buttons {
+                flex-direction: column;
+            }
+
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead tr {
+                display: none;
+            }
+
+            td {
+                position: relative;
+                padding-left: 50%;
+            }
+
+            td::before {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: bold;
+            }
+
+            td:nth-of-type(1)::before { content: "Nome"; }
+            td:nth-of-type(2)::before { content: "CNPJ"; }
+            td:nth-of-type(3)::before { content: "Início Contrato"; }
+            td:nth-of-type(4)::before { content: "Fim Contrato"; }
+            td:nth-of-type(5)::before { content: "Ações"; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Clientes Cadastrados</h2>
+
+        <div class="buttons">
+            <a href="{% url 'menu' %}" class="menu">Voltar ao Menu</a>
+            <a href="{% url 'cadastrar_clientes' %}" class="cadastrar">Cadastrar Cliente</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CNPJ</th>
+                    <th>Início Contrato</th>
+                    <th>Fim Contrato</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.nome }}</td>
+                    <td>{{ cliente.cnpj }}</td>
+                    <td>{{ cliente.data_inicio_contrato|date:"d/m/Y" }}</td>
+                    <td>
+                        {% if cliente.data_fim_contrato %}
+                            {{ cliente.data_fim_contrato|date:"d/m/Y" }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'editar_clientes' cliente.id %}">Editar</a> |
+                        <a href="{% url 'excluir_clientes' cliente.id %}">Excluir</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="5">Nenhum cliente cadastrado.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
